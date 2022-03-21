@@ -85,11 +85,8 @@ public class JdbcTest06 {
 			System.out.println("비밀번호 : " + rs.getString("mem_pass"));
 			System.out.println("전화번호 : " + rs.getString("mem_tel"));
 			System.out.println("주소 : " + rs.getString("mem_addr"));
-
 		}
-
 	}
-
 	private void delete() throws SQLException { // 삭제하기
 		
 		System.out.println("삭제할 회원의 ID>>");
