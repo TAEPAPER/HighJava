@@ -17,6 +17,9 @@ import java.util.Scanner;
  *  그리고 lprod_gu(프라이머리키)가 이미 등록되어 있으면 다시 입력받아서 처리한다.
  *  	==> count(*) from ~ 'p101' ==> 있으면 1 없으면 0 나온다
  *  
+ *  
+ *  
+ *  //내가한것!!!
  */
 
 public class JdbcTest05 {

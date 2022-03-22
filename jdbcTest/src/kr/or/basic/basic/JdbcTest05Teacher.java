@@ -13,16 +13,17 @@ import kr.or.basic.util.DBUtil;
 	Lprod테이블에 새로운 데이터를 추가하기
 	
 	lprod_gu와 lprod_nm은 직접 입력받아서 처리하고,
-	lprod_id는 현재의 lprod_id중에서 제일 큰 값보다 1크게 한다.
+	lprod_id는 현재의 lprod_id중에서 제일 큰 값보다 1 크게 한다.
 	
 	그리고 lprod_gu가 이미 등록되어 있으면 다시 입력 받아서 처리한다.
 
+
+             //HighJava 선생님이 한 것!
 */
 public class JdbcTest05Teacher {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		
 		Connection conn = null;
 		Statement stmt = null;
 		PreparedStatement pstmt = null;
@@ -38,8 +39,9 @@ public class JdbcTest05Teacher {
 			*/
 			conn = DBUtil.getConnection();
 			
+			//prod_id 구하기!!
 			// lprod_id는 현재의 lprod_id중에서 제일 큰 값보다 1크게 한다.
-//			String sql = "select max(lprod_id) from lprod";
+			//String sql = "select max(lprod_id) from lprod";
 			String sql = "select max(lprod_id) maxnum from lprod";
 			stmt = conn.createStatement();
 			
@@ -56,7 +58,7 @@ public class JdbcTest05Teacher {
 				// 컬럼의 alias가 있을 때
 				maxNum = rs.getInt("maxnum");
 			}
-			maxNum++; 
+			maxNum++; //maxNum 1 증가시켜주기!!
 			// ------------------------------
 			
 			// 입력받은 lprod_gu가 이미 등록되어 있으면 
@@ -98,7 +100,7 @@ public class JdbcTest05Teacher {
 			pstmt.setString(2, gu);
 			pstmt.setString(3, nm);
 			
-			int cnt = pstmt.executeUpdate();
+			int cnt = pstmt.executeUpdate();  //결과가 몇개 인지 반환된다!
 			
 			if(cnt>0) {
 				System.out.println("등록 성공!!");

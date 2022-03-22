@@ -11,6 +11,7 @@ import kr.or.basic.util.DBUtil;
 import kr.or.basic.util.DBUtil2;
 import kr.or.basic.util.DBUtil3;
 
+
 /*
  *  회원을 관리하는 프로그램을 작성하시오
  *  (MYMEMBER 테이블 이용)
@@ -91,7 +92,7 @@ public class JdbcTest06Teacher {
 		 */
 		//자바 선생님 부분
 		int num;
-		String updateField = null;
+		String updateField = null;  //컬럼명
 		String updateTitle = null;
 		do {
 			System.out.println();
@@ -109,7 +110,8 @@ public class JdbcTest06Teacher {
 			default : System.out.println("수정항목을 잘못 선택했습니다");
 			          System.out.println("다시 선택하세요");
 			}
-		}while(num <1 ||num>5);
+		}while(num <1 ||num>4);
+		
 	    System.out.println();
 	    System.out.print("새로운 "+ updateTitle + " >> ");
 	    scan.nextLine(); //버퍼 비우기
@@ -136,7 +138,7 @@ public class JdbcTest06Teacher {
 		
 	}
 
-	private void changeAddr(String memId) {
+/*	private void changeAddr(String memId) {
 		System.out.println("변경할 주소>>");
 		scan.nextLine();
 		String newAddr = scan.nextLine();
@@ -224,7 +226,9 @@ public class JdbcTest06Teacher {
 			disConnect();
 		}
 	}
-
+ 			*/
+	
+	
 	// 회원 정보를 삭제하는 메서드
 	private void deleteMember() {
 		System.out.println();
@@ -302,9 +306,9 @@ public class JdbcTest06Teacher {
 	// 전체 회원 정보를 출력하는 메서드
 	private void displayMember() {
 		System.out.println();
-		System.out.println("------------------------------");
+		System.out.println("----------------------------------------");
 		System.out.println("ID    비밀번호    이름    전화번호    주소");
-		System.out.println("------------------------------");
+		System.out.println("----------------------------------------");
 		try {
 			//conn = DBUtil1.getConnection();
 			//conn = DBUtil2.getConnection();
@@ -347,6 +351,7 @@ public class JdbcTest06Teacher {
 				System.out.println("다른 회원 id를 입력하세요");
 			}
 		} while (count > 0);
+		
 		System.out.println("비밀번호>>");
 		String memPass = scan.next();
 		System.out.println("회원이름 >>");
@@ -375,7 +380,7 @@ public class JdbcTest06Teacher {
 
 		} catch (SQLException e) {
 			// TODO: handle exception
-		} finally {
+		} finally { //자원반납 메서드!!
 			disConnect();
 		}
 
@@ -391,7 +396,7 @@ public class JdbcTest06Teacher {
 			pstmt.setString(1, memId);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				count = rs.getInt("cnt");
+			   count = rs.getInt("cnt");
 			}
 
 		} catch (SQLException e) {
@@ -423,13 +428,13 @@ public class JdbcTest06Teacher {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-			}
+		}
 	}
-
+	
 	// 메뉴를 출력하고 선택한 작업번호를 반환하는 메서드
 	private int displayMenu() {
 		System.out.println();
-		System.out.println("==작업선택==");
+		System.out.println("= = 작업선택 = =");
 		System.out.println("1. 자료 추가");
 		System.out.println("2. 자료 수정");
 		System.out.println("3. 자료 삭제");

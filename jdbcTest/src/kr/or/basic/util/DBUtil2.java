@@ -11,9 +11,9 @@ import java.util.Properties;
 
 //JDBC드라이버를 로딩하고 
 //Connection객체를 생성하여 반환하는 메서드로 구성된 class
+
+
 //(dbinfo.properties파일의 내용을 읽어와 설정하기)
-
-
 
 public class DBUtil2 {
 	static Properties prop; //Properties객체 변수 선언
@@ -24,7 +24,7 @@ public class DBUtil2 {
 		FileInputStream fin = null;
 		try {
 			fin = new FileInputStream(f); // 스트림 객체 생성
-			prop.load(fin);
+			prop.load(fin);    //prop에 넣어주기
 			//Class.forName("oracle.jdbc.driver.OracleDriver");
 			Class.forName(prop.getProperty("driver"));
 			

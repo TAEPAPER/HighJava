@@ -3,10 +3,11 @@ package kr.or.basic.basic;
 import java.util.ResourceBundle;
 
 /*
+ * 
  * ResourceBundle 객체 ==> 파일의 확장자가 'properties'인 파일의 내용을 읽어와 
  * 						  key값과 value값을 분리해서 정보를 갖고 있는 객체
  * 
- * 
+ *  						properties와 다르게 try-catch  쓰지 않는다!~!
  */
 public class ResourceBundleTest {
 	public static void main(String[] args) {

@@ -22,10 +22,11 @@ public static void main(String[] args) {
 				prop.load(fin); //파일 내용을 읽어와 key값과 value값을 분류한 후 properties객체에 추가해줌
 				
 				//읽어온 정보 출력해 보기
-				System.out.println("driver : " + prop.getProperty("driver"));
+				System.out.println("driver : " + prop.getProperty("driver"));//키로 찾는다!!
 				System.out.println("url : " + prop.getProperty("url"));
 				System.out.println("user : " + prop.getProperty("user"));
 				System.out.println("pass : " + prop.getProperty("pass"));
+				
 			} catch (IOException e) {
 				System.out.println("입출력 오류~~~");
 				e.printStackTrace();

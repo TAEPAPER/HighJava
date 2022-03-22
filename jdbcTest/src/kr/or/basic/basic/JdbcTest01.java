@@ -59,9 +59,9 @@ public class JdbcTest01 {
 			  //형식1)rs.get자료형이름("컬럼명")
 			  //형식2)rs.get자료형이름(컬럼번호) ==> 컬럼번호는 1번부터 시작
 			  //형식3)rs.get자료형이름("컬럼의 alias명")
-			  System.out.println("Lprod_ID : "+rs.getInt("lprod_id"));
-			  System.out.println("Lprod_GU : "+rs.getString(2));
-			  System.out.println("Lprod_NM : "+rs.getString("nm"));
+			  System.out.println("Lprod_ID : "+rs.getInt("lprod_id")); //컬럼명 써주기
+			  System.out.println("Lprod_GU : "+rs.getString(2));     //컬럼 인덱스
+			  System.out.println("Lprod_NM : "+rs.getString("nm"));   //별칭
 			  System.out.println("-----------------------------------");
 		  }
 		  
