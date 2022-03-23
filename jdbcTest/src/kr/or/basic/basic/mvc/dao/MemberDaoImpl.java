@@ -6,11 +6,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import kr.or.basic.basic.mvc.vo.MemberVO;
 
 public class MemberDaoImpl implements IMemberDao {
-
+	
+	//1번
+	private static MemberDaoImpl dao;
+	//2번
+	private MemberDaoImpl() {}
+	//3번
+	public static MemberDaoImpl getInstance() {
+		if(dao ==null) {
+			dao = new MemberDaoImpl();
+			return dao;
+		}
+		return dao;
+	}
+	
+	
 	@Override
 	public int insertMember(Connection conn, MemberVO memVo) throws SQLException {
 		String sql = "insert into mymember (mem_id, mem_pass,mem_name, mem_tel,mem_addr)" + " values(?,?,?,?,?) ";
@@ -86,14 +101,16 @@ public class MemberDaoImpl implements IMemberDao {
 		
 	}
 
-	@Override
-	public int updateMember2(Connection conn, String updateField, String memId,String updateData) throws SQLException {
-		String sql = "update mymember set "+ updateField+ " = ? where mem_id = ?";
+	@Override 
+	public int updateMember2(Connection conn, Map<String,String> paramMap ) throws SQLException {
+	//key값 정보 ==> 회원ID(memid) ,수정할 컬럼명(field),수정할 데이터(data)
+		String sql = "update mymember set "+ paramMap.get("field")+ " = ? where mem_id = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, updateData);
-		pstmt.setString(2, memId );
+		pstmt.setString(1, paramMap.get("data"));
+		pstmt.setString(2, paramMap.get("memid") );
 		int cnt = pstmt.executeUpdate();
 		
+		if(pstmt !=null)pstmt.close();
 		return cnt;
 	}
     

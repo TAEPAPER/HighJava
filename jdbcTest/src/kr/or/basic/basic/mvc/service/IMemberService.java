@@ -3,6 +3,7 @@ package kr.or.basic.basic.mvc.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import kr.or.basic.basic.mvc.vo.MemberVO;
 
@@ -49,10 +50,11 @@ public interface IMemberService {
 	 */
 	public int getMemberCount(String memId) ;
 	
-/**
- * 
- * @param memVo
- * @return
- */
-	public int updateMember2(String updateField, String memId,String updateData);
+	/**
+	 *   Map의 정보를 이용하여 회원정보 중 원하는 컬럼을 수정하는 메서드
+	 *   		key값 정보 ==> 회원ID(memid) ,수정할 컬럼명(field),수정할 데이터(data)
+	 * @param paramMap 수정할 회원ID,수정할 컬럼명, 수정할 데이터가 저장된 Map객체
+	 * @return 작업성공 : 1, 작업실패 : 0 
+	 */
+	public int updateMember2( Map<String,String> paramMap);
 }

@@ -1,20 +1,20 @@
 package kr.or.basic.basic.mvc.controller;
 
-import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import kr.or.basic.basic.mvc.service.IMemberService;
 import kr.or.basic.basic.mvc.service.MemberServiceImpl;
 import kr.or.basic.basic.mvc.vo.MemberVO;
-import kr.or.basic.util.DBUtil;
 
 public class MemberController {
 	private Scanner scan = new Scanner(System.in);
 	private IMemberService service;
 
 	public MemberController() {
-		service = new MemberServiceImpl();
+		service = MemberServiceImpl.getInstance();
 	}
 
 	public void startMember() {
@@ -45,7 +45,6 @@ public class MemberController {
 			}
 		}
 	}
-
 	private void updateMember2() {
 		System.out.println();
 		System.out.println("수정할 회원 정보를 입력하세요");
@@ -57,6 +56,7 @@ public class MemberController {
 			System.out.println("수정작업을 마칩니다");
 			return;
 		}
+		
 		int num;
 		String updateField = null; // 컬럼명
 		String updateTitle = null; // 타이틀
@@ -94,17 +94,21 @@ public class MemberController {
 		System.out.println();
 		System.out.print("새로운 " + updateTitle + " >> ");
 		scan.nextLine(); // 버퍼 비우기
+		
+		//수정작업에 필요한 정보를 Map객체에 셋팅한다.
 		String updateData = scan.nextLine();
-		int cnt = service.updateMember2(updateField, memId, updateData);
+		Map<String,String> paramMap = new HashMap<String,String>();
+		paramMap.put("memid", memId); //회원ID
+		paramMap.put("field",updateField); //수정할 컬럼명
+		paramMap.put("data", updateData);  //수정할 데이터
+		int cnt = service.updateMember2(paramMap);
 		
 		if (cnt > 0) {
 			System.out.println(updateTitle+"회원정보 수정 성공!!");
 		} else {
 			System.out.println(updateTitle+"회원정보 수정 실패!~~");
 		}
-
 	}
-
 	private int displayMenu() {
 		System.out.println();
 		System.out.println("= = 작업선택 = =");
@@ -227,6 +231,7 @@ public class MemberController {
 			for (MemberVO mem : list) {
 				System.out.print(mem.getMem_id() + "\t");
 				System.out.print(mem.getMem_pass() + "\t");
+				System.out.print(mem.getMem_name()+"\t");
 				System.out.print(mem.getMem_tel() + "\t");
 				System.out.println(mem.getMem_addr() + "\t");
 				System.out.println("----------------------------------------");
