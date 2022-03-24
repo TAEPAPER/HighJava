@@ -32,12 +32,12 @@ public class BoardMemServiceImpl implements BoardMemService{
 		Connection conn = null;
 		List<BoardMemVO> list = null;
 		try {
-			 conn = DBUtil3.getConnection();
-			 list  =  dao.displayAll(conn);
+		   conn = DBUtil3.getConnection();
+		   list  =  dao.displayAll(conn);
 		} catch (SQLException e) {
 			list = null;
 		}finally {
-			if(conn!=null)try{conn.close();}catch(SQLException e) {}
+			if(conn!=null)try{conn.close();}catch(SQLException e){}
 		}
 		return list;
 	}
@@ -51,17 +51,18 @@ public class BoardMemServiceImpl implements BoardMemService{
 			 int cnt =  dao.insertBoard(conn);
 		} catch (SQLException e) {
 			int cnt =0;
+			e.printstacktrace();
 		}finally {
 			if(conn!=null)try{conn.close();}catch(SQLException e) {}
 		}
 		return cnt;
 	}
 
-	@Override
+	@Override  
 	public List<BoardMemVO> choiceBoard(int board_no) {
+		
 		Connection conn = null;
 		List<BoardMemVO> list = null;
-		
 		try {
 			 conn = DBUtil3.getConnection();
 			 list  =  dao.choiceBoard(conn, board_no);
@@ -78,15 +79,13 @@ public class BoardMemServiceImpl implements BoardMemService{
 		Connection conn = null;
 		int cnt =0;
 		try {
-			 conn = DBUtil.getConnection();
-			 int cnt =  dao.updateBoard(conn,title,content);
+			conn = DBUtil.getConnection();
+			int cnt =  dao.updateBoard(conn,title,content);
 		} catch (SQLException e) {
 			int cnt =0;
 		}finally {
 			if(conn!=null)try{conn.close();}catch(SQLException e) {}
 		}
-		
-		
 		return cnt;
 	}
 
@@ -111,7 +110,7 @@ public class BoardMemServiceImpl implements BoardMemService{
 		List<BoardMemVO> list = new ArrayList<BoardMemVO>();
 		try {
 			 conn = DBUtil.getConnection();
-			 int list =  dao.titleSearch(conn, searching);
+			 list =  dao.titleSearch(conn, searching);
 		} catch (SQLException e) {
 			
 		}finally {
