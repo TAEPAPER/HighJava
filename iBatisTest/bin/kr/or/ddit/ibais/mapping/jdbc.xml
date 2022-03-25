@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 이 문서는 iBatis에서 처리할 SQL문을 작성하는 문서입니다. -->
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+	<!-- 
+	/*
+ *  Lprod테이블에 새로운 데이터를 추가하기
+ *  
+ *  lprod_gu와 lprod_nm은 직접 입력받아서 처리하고 
+ *  lprod_id는 현재의 lprod_id 중에서 큰 값보다 1크게 한다.
+ *  	==> max라는 함수 이용해서 하기
+ *  그리고 lprod_gu(프라이머리키)가 이미 등록되어 있으면 다시 입력받아서 처리한다.
+ *  	==> count(*) from ~ 'p101' ==> 있으면 1 없으면 0 나온다
+ *  (sql문이 저장되는 xml 문서의 파일 명 : jdbc.xml)
+ *  
+ *  
+ *  //내가한것!!!
+ */
+	
+	 -->
+
+   <sqlMap namespace="Jlprod">
+  
+
+   <select id = "getMaxId" resultClass = "int" >
+   		select max(lprod_id) maxnum from lprod 
+   </select>
+   <select id = "getcount" parameterClass = "string" resultClass = "int">
+      select count(*) from lprod where lprod_gu = #lprod_gu#
+   </select>
+    
+   <!-- 
+   만약에 없으면 gu와 nm을 입력받아서 insert하기!
+    -->
+   <insert id = "insert" parameterClass = "lprodvo">
+     	insert into lprod (lprod_id, lprod_gu, lprod_nm) 
+     	values (#lprod_id#,#lprod_gu#,#lprod_nm#)
+   </insert>
+   
+   
+   			
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   </sqlMap>

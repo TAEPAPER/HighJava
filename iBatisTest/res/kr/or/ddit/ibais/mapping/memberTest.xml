@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 iBatis에서 처리할 SQL문을 작성하는 문서입니다. -->
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+   <sqlMap namespace="member">
+   <!-- 
+  	 private String mem_id;
+	private String mem_name;
+	private String mem_pass;
+	private String mem_tel;
+	private String mem_addr;
+   
+   
+    -->
+ 
+   <!-- 
+   		멤버가 있는지 없는지 확인하는 쿼리
+    -->
+   <select id = "getMemCount" parameterClass = "string" resultClass = "int">
+      select count(*) from mymember where mem_id = #mem_id#
+   </select>
+   
+   <!-- 멤버를 insert하는 쿼리 -->
+   <insert id = "insert" parameterClass = "kr.or.basic.basic.mvc.vo.MemberVO">
+   insert into mymember (mem_id,mem_name,mem_pass,mem_tel,mem_addr)
+   values (#mem_id#,#mem_name#,#mem_pass#,#mem_tel#,#mem_addr#)
+   </insert>
+   
+   <!-- update하는 쿼리  id는 수정불가-->
+   <update id ="update" parameterClass = "kr.or.basic.basic.mvc.vo.MemberVO">
+   
+   update mymember set mem_id = #mem_id#, mem_name = #mem_name#,
+   mem_pass = #mem_pass# ,mem_tel = #mem_tel#, mem_addr = #mem_addr#
+   </update>
+   
+   <!-- 멤버 삭제 -->
+   <delete id = "delete" parameterClass = "string">
+   	delete mymember where mem_id = #id#
+   </delete>
+   
+   <!-- 회원 정보 전부 출력 자동으로 list에 담아줌 -->
+   <select id="displayAll" resultClass = "kr.or.basic.basic.mvc.vo.MemberVO">
+   select * from mymember
+   </select>
+   
+   
+   
+   
+   
+   
+   
+   </sqlMap>
+    
+  
