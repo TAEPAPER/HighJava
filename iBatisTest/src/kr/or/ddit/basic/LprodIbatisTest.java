@@ -105,7 +105,9 @@ public class LprodIbatisTest {
 //	    	 
 	    	 //2-4.select작업
 //	    	 System.out.println();
+	    	 
 //	    	 //1) select한 결과가 여러개인 경우 
+	    	 
 //	    	 System.out.println("select 연습 (결과가 여러개의 레코드일 경우...)");
 //	    	 
 //	    	 // 결과가 여러개일 때 형식 ) smc.queryForList("namespace값.id값",파리미터클래스)
@@ -124,6 +126,7 @@ public class LprodIbatisTest {
 //	    	 System.out.println("춸력끝");
 	    	 
 	    	 //2)select한 결과가 1개의 레코드일 경우
+	    	 
 	    	 System.out.println("select 작업 (결과가 1개의 레코드일 경우...)");
 	    	 System.out.println("검색할 Lprod_gu 입력 :");
 	    	 String gu = scan.next();

@@ -27,6 +27,7 @@
    <select id = "getMaxId" resultClass = "int" >
    		select max(lprod_id) maxnum from lprod 
    </select>
+   
    <select id = "getcount" parameterClass = "string" resultClass = "int">
       select count(*) from lprod where lprod_gu = #lprod_gu#
    </select>

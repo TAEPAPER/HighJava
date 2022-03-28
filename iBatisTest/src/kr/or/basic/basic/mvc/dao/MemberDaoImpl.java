@@ -52,13 +52,13 @@ public class MemberDaoImpl implements IMemberDao {
 	}
 	@Override
 	public int getMemberCount(SqlMapClient smc, String memId) throws SQLException {
-			int cnt= (int) smc.queryForObject(memId);
+			int cnt= (int) smc.queryForObject("member.getMemCount",memId);
 		return cnt;
 	}
 	@Override
-	public int updateMember2(Connection conn, Map<String, String> paramMap) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateMember2(SqlMapClient smc, Map<String, String> paramMap) throws SQLException {
+	        
+		return smc.update("member.updateMember2",paramMap); 
 	}
 	
 	

@@ -30,8 +30,8 @@
    <!-- update하는 쿼리  id는 수정불가-->
    <update id ="update" parameterClass = "kr.or.basic.basic.mvc.vo.MemberVO">
    
-   update mymember set mem_id = #mem_id#, mem_name = #mem_name#,
-   mem_pass = #mem_pass# ,mem_tel = #mem_tel#, mem_addr = #mem_addr#
+   update mymember set mem_name = #mem_name#,
+   mem_pass = #mem_pass# , mem_tel = #mem_tel#, mem_addr = #mem_addr# where mem_id = #mem_id#
    </update>
    
    <!-- 멤버 삭제 -->
@@ -44,7 +44,17 @@
    select * from mymember
    </select>
    
-   
+   <!-- key값을 줄 수 있어 
+   key값 정보 : memid, field(수정할 컬럼명), data(수정할 데이터)
+   Map을 파라미터로 받아서 처리할 때 변수명 역할은 Map의 key값으로 한다
+   파라미터로 가져온 값을 컬럼명등의 자리에서 사용할 경우에는 ($)기호를 사용해서 나타낸다.
+   예) $변수명$ 또는 $key값$
+   -->
+   <update id = "updateMember2" parameterClass = "map">
+      update mymember set
+      $field$ = #data#
+      where mem_id = #memid# 
+   </update>
    
    
    

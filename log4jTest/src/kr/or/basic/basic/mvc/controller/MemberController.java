@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import kr.or.basic.basic.mvc.service.IMemberService;
 import kr.or.basic.basic.mvc.service.MemberServiceImpl;
 import kr.or.basic.basic.mvc.vo.MemberVO;
@@ -12,7 +14,9 @@ import kr.or.basic.basic.mvc.vo.MemberVO;
 public class MemberController {
 	private Scanner scan = new Scanner(System.in);
 	private IMemberService service;
-
+	private static final Logger logger = Logger.getLogger(MemberController.class);
+	
+	
 	public MemberController() {
 		service = MemberServiceImpl.getInstance();
 	}
@@ -104,9 +108,9 @@ public class MemberController {
 		int cnt = service.updateMember2(paramMap);
 		
 		if (cnt > 0) {
-			System.out.println(updateTitle+"회원정보 수정 성공!!");
+			System.out.println(updateTitle+"회원정보 수정 성공!!!");
 		} else {
-			System.out.println(updateTitle+"회원정보 수정 실패!~~");
+			System.out.println(updateTitle+"회원정보 수정 실패!!!");
 		}
 	}
 	private int displayMenu() {
@@ -215,6 +219,7 @@ public class MemberController {
 		} else {
 			System.out.println("회원정보 삭제 실패!~~");
 		}
+
 	}
 
 	private void displayMember() {
@@ -237,6 +242,7 @@ public class MemberController {
 			}
 		}
 	}
+
 	public static void main(String[] args) {
 		new MemberController().startMember();
 	}
